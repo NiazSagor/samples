@@ -157,8 +157,10 @@ class InfiniteProcessIsolateController extends ChangeNotifier {
   }
 
   void terminate() {
+    if (!_created) return;
     newIsolate?.kill();
     _created = false;
+    _paused = false;
     _currentResults.clear();
     notifyListeners();
   }
